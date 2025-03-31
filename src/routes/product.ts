@@ -22,6 +22,50 @@ export const productRoutes = new Elysia({ prefix: "/products" })
       };
     }
   })
+  .post(
+    "/",
+    async ({ body }) => {
+      try {
+        const { name, description, price, quantity, image } = body;
+
+        //ensuring all fields are provided
+        if (!name || !description || !price || !quantity || !image) {
+          return {
+            success: false,
+            message: "All fields are required",
+            status: 400,
+          };
+        }
+
+        //inserting product into the database
+        const product = await db
+          .insert(productTable)
+          .values({ name, description, price, quantity, imageUrl: image });
+        return {
+          success: true,
+          message: "Product created successfully",
+          data: product,
+          status: 201,
+        };
+      } catch (error) {
+        console.log(error);
+        return {
+          success: false,
+          message: "failed to create product",
+          status: 500,
+        };
+      }
+    },
+    {
+      body: t.Object({
+        name: t.String(),
+        price: t.Numeric(),
+        description: t.String(),
+        quantity: t.Numeric(),
+        image: t.String(),
+      }),
+    },
+  )
   .get(
     "/:id",
     async ({ params }) => {
