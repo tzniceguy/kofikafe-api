@@ -2,7 +2,7 @@ import { sql } from "drizzle-orm";
 import { sqliteTable, integer, text } from "drizzle-orm/sqlite-core";
 
 export const userTable = sqliteTable("users", {
-  created_at: integer("created_at", { mode: "timestamp" }).default(
+  createdAt: integer("created_at", { mode: "timestamp" }).default(
     sql`CURRENT_TIMESTAMP`,
   ),
   id: integer("id").primaryKey({ autoIncrement: true }),
