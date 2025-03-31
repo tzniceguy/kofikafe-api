@@ -9,6 +9,7 @@
     "studio": "bunx drizzle-kit studio"
   },
   "dependencies": {
+    "@elysiajs/jwt": "^1.2.0",
     "@elysiajs/swagger": "^1.2.2",
     "bcryptjs": "^3.0.2",
     "dotenv": "^16.4.7",
