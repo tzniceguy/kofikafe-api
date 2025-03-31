@@ -24,3 +24,12 @@ export const productTable = sqliteTable("products", {
   quantity: integer("quantity").notNull(),
   imageUrl: text("image_url").notNull(),
 });
+
+export const categoriesTable = sqliteTable("categories", {
+  createdAt: integer("created_at", { mode: "timestamp" }).default(
+    sql`CURRENT_TIMESTAMP`,
+  ),
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  name: text("name").notNull().unique(),
+  description: text("description").notNull(),
+});
