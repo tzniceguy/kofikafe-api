@@ -33,3 +33,19 @@ export const categoriesTable = sqliteTable("categories", {
   name: text("name").notNull().unique(),
   description: text("description").notNull(),
 });
+
+export const orderTable = sqliteTable("order", {
+  created_at: integer("created_at", { mode: "timestamp" }).default(
+    sql`CURRENT_TIMESTAMP`,
+  ),
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  userId: integer("user_id").references(() => userTable.id),
+  productId: integer("product_id").references(() => productTable.id),
+  quantity: integer("quantity").notNull(),
+  status: text("status").notNull(),
+  total: integer("total").notNull(),
+  payment_status: text("payment_status").notNull(),
+  payment_method: text("payment_method").notNull().default("cash"),
+  order_type: text("order_type").notNull().default("pickup"),
+  delivery_address: text("delivery_address").notNull(),
+});
