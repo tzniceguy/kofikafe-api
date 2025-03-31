@@ -14,7 +14,7 @@ export const userTable = sqliteTable("users", {
 });
 
 export const productTable = sqliteTable("products", {
-  createdAt: integer("created_at", { mode: "timestamp" }).default(
+  created_at: integer("created_at", { mode: "timestamp" }).default(
     sql`CURRENT_TIMESTAMP`,
   ),
   id: integer("id").primaryKey({ autoIncrement: true }),
@@ -26,7 +26,7 @@ export const productTable = sqliteTable("products", {
 });
 
 export const categoriesTable = sqliteTable("categories", {
-  createdAt: integer("created_at", { mode: "timestamp" }).default(
+  created_at: integer("created_at", { mode: "timestamp" }).default(
     sql`CURRENT_TIMESTAMP`,
   ),
   id: integer("id").primaryKey({ autoIncrement: true }),
