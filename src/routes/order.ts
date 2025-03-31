@@ -3,8 +3,8 @@ import { orderTable, productTable } from "../database/schema";
 import { db } from "../database";
 import { eq } from "drizzle-orm";
 
-export const orderRoute = new Elysia()
-  .get("/orders", async () => {
+export const orderRoutes = new Elysia({ prefix: "/orders" })
+  .get("/", async () => {
     try {
       const orders = await db.select().from(orderTable).all();
       return {
@@ -23,7 +23,7 @@ export const orderRoute = new Elysia()
     }
   })
   .post(
-    "/orders",
+    "/",
     async ({ body }) => {
       try {
         const {
@@ -112,6 +112,40 @@ export const orderRoute = new Elysia()
         payment_method: t.Optional(t.String()),
         order_type: t.Optional(t.String()),
         delivery_address: t.Optional(t.String()),
+      }),
+    },
+  )
+  .get(
+    "/:id",
+    async ({ params }) => {
+      try {
+        //fetch specified order in the database
+        const order = await db
+          .select()
+          .from(orderTable)
+          .where(eq(orderTable.id, params.id))
+          .get();
+
+        if (!order) {
+          return {
+            success: false,
+            message: "Order not found",
+            status: 404,
+          };
+        }
+        return {
+          success: true,
+          message: "Order fetched successfully",
+          data: order,
+          status: 200,
+        };
+      } catch (error) {
+        console.error("unable to get details about particular order", error);
+      }
+    },
+    {
+      params: t.Object({
+        id: t.Integer(),
       }),
     },
   );
