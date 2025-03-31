@@ -9,7 +9,7 @@ const db = drizzle(sqlite);
 async function main() {
   try {
     await migrate(db, {
-      migrationsFolder: "./src/db/migrations",
+      migrationsFolder: "./src/database/migrations",
     });
     console.log("Migration successful");
     sqlite.close();
