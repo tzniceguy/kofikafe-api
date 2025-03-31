@@ -2,7 +2,7 @@ import { Elysia } from "elysia";
 import { swagger } from "@elysiajs/swagger";
 import { authRoutes } from "./routes/auth";
 import { productRoutes } from "./routes/product";
-import { orderRoute } from "./routes/order";
+import { orderRoutes } from "./routes/order";
 
 const app = new Elysia()
   .use(
@@ -19,7 +19,7 @@ const app = new Elysia()
 
   .use(authRoutes)
   .use(productRoutes)
-  .use(orderRoute)
+  .use(orderRoutes)
   .get("/", () => ({
     messsage: "Welcome to KofiiKafee API",
     version: "1.0.0",
