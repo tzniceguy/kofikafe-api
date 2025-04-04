@@ -3,6 +3,7 @@ import { swagger } from "@elysiajs/swagger";
 import { authRoutes } from "./routes/auth";
 import { productRoutes } from "./routes/product";
 import { orderRoutes } from "./routes/order";
+import cors from "@elysiajs/cors";
 
 const app = new Elysia()
   .use(
@@ -24,6 +25,7 @@ const app = new Elysia()
     messsage: "Welcome to KofiiKafee API",
     version: "1.0.0",
   }))
+  .use(cors())
   .listen(3000);
 
 console.log(
