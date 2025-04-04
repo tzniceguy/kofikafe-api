@@ -6,9 +6,11 @@
     "dev": "bun run --watch src/index.ts",
     "makemigration": "drizzle-kit generate",
     "migrate": "bun run src/database/migrate.ts",
-    "studio": "bunx drizzle-kit studio"
+    "studio": "bunx drizzle-kit studio",
+    "seed": "bun run src/database/seed.ts"
   },
   "dependencies": {
+    "@elysiajs/cors": "^1.2.0",
     "@elysiajs/jwt": "^1.2.0",
     "@elysiajs/swagger": "^1.2.2",
     "bcryptjs": "^3.0.2",
