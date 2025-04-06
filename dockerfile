@@ -1,19 +1,19 @@
 FROM oven/bun:latest
 
-#set working directory
+# Set working directory
 WORKDIR /app
 
-#copy package.json and package-lock.json
+# Copy package files
 COPY package.json bun.lockb ./
 
-#install dependencies
+# Install dependencies
 RUN bun install
 
-#copy source code
+# Copy source code
 COPY . .
 
-#expose port 3000
+# Expose port 3000
 EXPOSE 3000
 
-#start the application
-CMD ["bun", "run", "dev"]
+# Start the application in production mode
+CMD ["bun", "run", "src/index.ts"]
