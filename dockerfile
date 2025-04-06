@@ -16,4 +16,5 @@ COPY . .
 EXPOSE 3000
 
 # Start the application in production mode
-CMD ["bun", "run", "src/index.ts"]
+
+CMD ["/bin/sh", "-c", "bun run makemigrations && bun run migrate && bun run src/index.ts"]
