@@ -26,7 +26,10 @@ const app = new Elysia()
     version: "1.0.0",
   }))
   .use(cors())
-  .listen(3000);
+  .listen({
+    hostname: "0.0.0.0",
+    port: 3000,
+  });
 
 console.log(
   `🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`,
